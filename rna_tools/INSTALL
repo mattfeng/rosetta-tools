@@ -1,0 +1,13 @@
+# If ROSETTA_TOOLS is set, then use it; else assume $ROSETTA/tools
+if [ -z ${ROSETTA_TOOLS+x} ]; then
+  export RNA_TOOLS=$ROSETTA/tools/rna_tools/
+else
+  export RNA_TOOLS=$ROSETTA_TOOLS/rna_tools/
+fi
+
+#Runs the commands
+python $RNA_TOOLS/sym_link.py
+
+#Add the following lines to your ~/.bashrc
+export PATH=$PATH:$RNA_TOOLS/bin/
+export PYTHONPATH=$PYTHONPATH:$RNA_TOOLS/bin/

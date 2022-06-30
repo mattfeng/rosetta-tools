@@ -1,0 +1,47 @@
+BUILDING CLANG
+
+Works on:
+	- Ubuntu 14.04
+	- Mac OS 10.9
+
+<commands>
+
+mkdir clang && cd clang
+
+# Get clang sources
+git clone http://llvm.org/git/llvm.git llvm
+cd llvm/tools
+git checkout release_37
+# svn co -r 206320 http://llvm.org/svn/llvm-project/cfe/trunk clang
+git clone http://llvm.org/git/clang.git clang
+cd clang/tools
+git checkout release_37
+git clone http://llvm.org/git/clang-tools-extra.git extra
+cd extra
+git checkout release_37
+ln -s ../../../../../../rosetta-refactor-tool/
+echo 'add_subdirectory(rosetta-refactor-tool)' >> CMakeLists.txt
+cd 
+
+# Configure and build
+mkdir build 
+cd build
+../llvm/configure 
+
+# And then execute one of the two following commands
+cmake -DCMAKE_BUILD_TYPE=Release ../llvm/
+# OR if you'd prefer building with ninja
+cmake -DCMAKE_BUILD_TYPE=Release ../llvm/ -G Ninja
+
+# And then execute one of the two following commands
+make -j 8
+# OR if you're using ninja
+ninja
+# (Ninja doesn't need to be told to use all the CPUs available)
+
+</commands>
+
+This will build two executables of note for you in the bin directory:
+rosetta-refactor-tool, and
+serialization_validator
+

@@ -1,0 +1,29 @@
+#how to run antibody mode -- these are the current best-practices
+-antibody::remodel              perturb_kic
+-antibody::snugfit              true
+-antibody::refine               refine_kic
+-antibody::cter_insert          false
+-antibody::flank_residue_min    true
+-antibody::bad_nter             false
+-antibody::h3_filter            false
+-antibody::h3_filter_tolerance  5
+-antibody:constrain_vlvh_qq
+
+#more standard settings, for packages used by antibody_H3
+-ex1
+-ex2
+-extrachi_cutoff 0
+
+#these are standard settings for kic/ngk
+-loops:legacy_kic false
+-loops:kic_min_after_repack true
+-loops:kic_omega_sampling
+-loops:allow_omega_move true    ### remove 'true' and loop::?
+-kic_bump_overlap_factor 0.36
+-loops:ramp_fa_rep
+-loops:ramp_rama
+-loops:refine_outer_cycles 5
+
+#These enable the kink constraints.  Increase the weight if you want tighter kink constraints.
+-antibody:constrain_cter
+-constraints:cst_weight 1.0
