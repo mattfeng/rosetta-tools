@@ -8,3 +8,7 @@
 rna_tools/bin/*py
 glycam.codes
 *.bak
+
+*build/
+dist/
+*.egg-info/
